@@ -1,6 +1,6 @@
 {
   "name": "@edusites/bancos-brasil",
-  "version": "1.0.1",
+  "version": "1.0.8",
   "description": "Biblioteca JavaScript para renderizar ícones SVG de bancos brasileiros",
   "author": {
     "name": "Eduardo Sites",
@@ -32,8 +32,9 @@
   },
   "files": [
     "src/index.js",
+    "src/core.js",
     "src/icones.js",
-    "src/SvgBanco.vue",
+    "src/SvgBanco.js",
     "icons",
     "README.md",
     "LICENSE"
