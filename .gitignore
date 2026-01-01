@@ -7,3 +7,5 @@ coverage
 .vscode
 .idea
 .claude
+.editorconfig
+.prettierrc

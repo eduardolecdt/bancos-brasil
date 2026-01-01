@@ -1,6 +1,6 @@
 {
   "name": "@edusites/bancos-brasil",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Biblioteca JavaScript para renderizar ícones SVG de bancos brasileiros",
   "author": {
     "name": "Eduardo Sites",
@@ -8,6 +8,7 @@
     "url": "https://lecdt.com"
   },
   "license": "MIT",
+  "homepage": "https://lecdt.com/libs/bancos-brasil",
   "repository": {
     "type": "git",
     "url": "https://github.com/eduardolecdt/bancos-brasil"
@@ -31,6 +32,8 @@
   },
   "files": [
     "src/index.js",
+    "src/icones.js",
+    "src/SvgBanco.vue",
     "icons",
     "README.md",
     "LICENSE"

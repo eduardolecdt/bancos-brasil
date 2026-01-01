@@ -18,12 +18,12 @@ Obrigado por considerar contribuir com `@edusites/bancos-brasil`!
 const PRESETS = {
   // ...
   novobanco: {
-    cor: "#FFFFFF",
-    fundo: "#000000",
-    formato: "quadrado",
-    tamanho: 64,
-  },
-};
+    cor: '#FFFFFF',
+    fundo: '#000000',
+    formato: 'quadrado',
+    tamanho: 64
+  }
+}
 ```
 
 3. Atualize o README.md

@@ -24,36 +24,36 @@ pnpm add @edusites/bancos-brasil
 ### JavaScript Puro
 
 ```javascript
-import { svgBanco } from "@edusites/bancos-brasil";
+import { svgBanco } from '@edusites/bancos-brasil'
 
 // Com preset (configuração padrão)
-const svg = await svgBanco({ nome: "nubank" });
-document.getElementById("app").innerHTML = svg;
+const svg = await svgBanco({ nome: 'nubank' })
+document.getElementById('app').innerHTML = svg
 
 // Customizado
 const svg = await svgBanco({
-  nome: "cora",
-  formato: "circulo",
-  cor: "#FFFFFF",
-  fundo: "#FE3E6D",
-  tamanho: 96,
-});
+  nome: 'cora',
+  formato: 'circulo',
+  cor: '#FFFFFF',
+  fundo: '#FE3E6D',
+  tamanho: 96
+})
 ```
 
 ### React
 
 ```jsx
-import { svgBanco } from "@edusites/bancos-brasil";
-import { useEffect, useState } from "react";
+import { svgBanco } from '@edusites/bancos-brasil'
+import { useEffect, useState } from 'react'
 
 function BancoIcon({ nome, formato, cor, fundo, tamanho }) {
-  const [svg, setSvg] = useState("");
+  const [svg, setSvg] = useState('')
 
   useEffect(() => {
-    svgBanco({ nome, formato, cor, fundo, tamanho }).then(setSvg);
-  }, [nome, formato, cor, fundo, tamanho]);
+    svgBanco({ nome, formato, cor, fundo, tamanho }).then(setSvg)
+  }, [nome, formato, cor, fundo, tamanho])
 
-  return <div dangerouslySetInnerHTML={{ __html: svg }} />;
+  return <div dangerouslySetInnerHTML={{ __html: svg }} />
 }
 
 // Uso
@@ -64,7 +64,7 @@ export default function App() {
       <BancoIcon nome="cora" formato="circulo" />
       <BancoIcon nome="itau" cor="#FFFFFF" fundo="#EC7000" tamanho={96} />
     </div>
-  );
+  )
 }
 ```
 
@@ -74,18 +74,18 @@ Crie o componente `SvgBanco.vue`:
 
 ```vue
 <script setup>
-import { svgBanco } from "@edusites/bancos-brasil";
-import { ref, watchEffect } from "vue";
+import { svgBanco } from '@edusites/bancos-brasil'
+import { ref, watchEffect } from 'vue'
 
 const props = defineProps({
   nome: { type: String, required: true },
   formato: String,
   cor: String,
   fundo: String,
-  tamanho: Number,
-});
+  tamanho: Number
+})
 
-const svg = ref("");
+const svg = ref('')
 
 watchEffect(async () => {
   svg.value = await svgBanco({
@@ -93,9 +93,9 @@ watchEffect(async () => {
     formato: props.formato,
     cor: props.cor,
     fundo: props.fundo,
-    tamanho: props.tamanho,
-  });
-});
+    tamanho: props.tamanho
+  })
+})
 </script>
 
 <template>
