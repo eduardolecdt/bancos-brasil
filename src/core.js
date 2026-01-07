@@ -60,6 +60,84 @@ const PRESETS = {
     fundo: '#ffffff',
     formato: 'quadrado',
     tamanho: 64
+  },
+  infinitepay: {
+    cor: '#7DDB13',
+    fundo: '#171527',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  picpay: {
+    cor: '#ffffff',
+    fundo: '#21C25E',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  mercadopago: {
+    cor: '#0A0080',
+    fundo: '#00BCFF',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  pagbank: {
+    cor: '#000000',
+    fundo: '#42A936',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  c6: {
+    cor: '#ffffff',
+    fundo: '#121212',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  digio: {
+    cor: '#ffffff',
+    fundo: '#00275C',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  sicoob: {
+    cor: '#B8D335',
+    fundo: '#003B43',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  neon: {
+    cor: '#01C4E0',
+    fundo: '#161C3E',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  pan: {
+    cor: '#414141',
+    fundo: '#FFFFFF',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  safra: {
+    cor: '#C3AC6C',
+    fundo: '#151D43',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  wise: {
+    cor: '#163300',
+    fundo: '#9FE870',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  paypal: {
+    cor: '#222D65',
+    fundo: '#ffffff',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  stripe: {
+    cor: '#ffffff',
+    fundo: '#635BFF',
+    formato: 'quadrado',
+    tamanho: 64
   }
 }
 

@@ -160,16 +160,26 @@ Crie o componente `SvgBanco.svelte`:
 
 | Nome            | Cor Ícone | Cor Fundo |
 | --------------- | --------- | --------- |
-| `nubank`        | `#FFFFFF` | `#820AD1` |
-| `cora`          | `#FFFFFF` | `#FE3E6D` |
-| `itau`          | `#FFFFFF` | `#EC7000` |
-| `inter`         | `#FFFFFF` | `#FF7A00` |
 | `bancodobrasil` | `#FFDD00` | `#003D7A` |
 | `bradesco`      | `#FFFFFF` | `#CC092F` |
-| `santander`     | `#FFFFFF` | `#EC0000` |
+| `btg`           | `#FFFFFF` | `#001E62` |
+| `c6`            | `#FFFFFF` | `#121212` |
 | `caixa`         | `#FFFFFF` | `#0066A1` |
-| `btg`           | `#FFFFFF` | `#000000` |
-| `xp`            | `#1D1D1B` | `#FFED00` |
+| `cora`          | `#FFFFFF` | `#FE3E6D` |
+| `digio`         | `#FFFFFF` | `#00275C` |
+| `infinitepay`   | `#000000` | `#FFFFFF` |
+| `inter`         | `#FFFFFF` | `#FF7A00` |
+| `itau`          | `#FFFFFF` | `#EC7000` |
+| `mercadopago`   | `#0A0080` | `#00BCFF` |
+| `neon`          | `#01C4E0` | `#161C3E` |
+| `nubank`        | `#FFFFFF` | `#820AD1` |
+| `pagbank`       | `#000000` | `#42A936` |
+| `pan`           | `#414141` | `#FFFFFF` |
+| `picpay`        | `#000000` | `#FFFFFF` |
+| `safra`         | `#C3AC6C` | `#151D43` |
+| `santander`     | `#FFFFFF` | `#EC0000` |
+| `sicoob`        | `#B8D335` | `#003B43` |
+| `xp`            | `#000000` | `#FFFFFF` |
 
 ## Formatos
 
