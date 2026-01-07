@@ -138,6 +138,30 @@ const PRESETS = {
     fundo: '#635BFF',
     formato: 'quadrado',
     tamanho: 64
+  },
+  stone: {
+    cor: '#00A868',
+    fundo: '#ffffff',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  next: {
+    cor: '#000000',
+    fundo: '#00FF5F',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  original: {
+    cor: '#ffffff',
+    fundo: '#00A857',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  sicredi: {
+    cor: '#3DAE2B',
+    fundo: '#ffffff',
+    formato: 'quadrado',
+    tamanho: 64
   }
 }
 
