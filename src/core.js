@@ -162,6 +162,90 @@ const PRESETS = {
     fundo: '#ffffff',
     formato: 'quadrado',
     tamanho: 64
+  },
+  rico: {
+    cor: '#FF5200',
+    fundo: '#010042',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  revolut: {
+    cor: '#FFFFFF',
+    fundo: '#000000',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  bs2: {
+    cor: '#FFFFFF',
+    fundo: '#0021AF',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  bv: {
+    cor: '#223AD2',
+    fundo: '#FFFFFF',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  efibank: {
+    cor: '#F37025',
+    fundo: '#000000',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  ton: {
+    cor: '#FFFFFF',
+    fundo: '#0DEA4A',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  iugu: {
+    cor: '#000000',
+    fundo: '#FFFFFF',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  asaas: {
+    cor: '#FFFFFF',
+    fundo: '#0036E1',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  ngcash: {
+    cor: '#FFFFFF',
+    fundo: '#000000',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  avenue: {
+    cor: '#FFFFFF',
+    fundo: '#002820',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  nomad: {
+    cor: '#000000',
+    fundo: '#FFCE04',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  mercantil: {
+    cor: '#FFFFFF',
+    fundo: '#1526FF',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  bmg: {
+    cor: '#FFFFFF',
+    fundo: '#F26321',
+    formato: 'quadrado',
+    tamanho: 64
+  },
+  agibank: {
+    cor: '#FFFFFF',
+    fundo: '#0133B0',
+    formato: 'quadrado',
+    tamanho: 64
   }
 }
 

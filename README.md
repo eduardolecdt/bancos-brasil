@@ -160,25 +160,46 @@ Crie o componente `SvgBanco.svelte`:
 
 | Nome            | Cor Ícone | Cor Fundo |
 | --------------- | --------- | --------- |
+| `agibank`       | `#FFFFFF` | `#0133B0` |
+| `asaas`         | `#FFFFFF` | `#0036E1` |
+| `avenue`        | `#FFFFFF` | `#002820` |
 | `bancodobrasil` | `#FFDD00` | `#003D7A` |
+| `bmg`           | `#FFFFFF` | `#F26321` |
 | `bradesco`      | `#FFFFFF` | `#CC092F` |
+| `bs2`           | `#FFFFFF` | `#0021AF` |
 | `btg`           | `#FFFFFF` | `#001E62` |
+| `bv`            | `#223AD2` | `#FFFFFF` |
 | `c6`            | `#FFFFFF` | `#121212` |
 | `caixa`         | `#FFFFFF` | `#0066A1` |
 | `cora`          | `#FFFFFF` | `#FE3E6D` |
 | `digio`         | `#FFFFFF` | `#00275C` |
-| `infinitepay`   | `#000000` | `#FFFFFF` |
+| `efibank`       | `#F37025` | `#000000` |
+| `infinitepay`   | `#7DDB13` | `#171527` |
 | `inter`         | `#FFFFFF` | `#FF7A00` |
 | `itau`          | `#FFFFFF` | `#EC7000` |
+| `iugu`          | `#000000` | `#FFFFFF` |
 | `mercadopago`   | `#0A0080` | `#00BCFF` |
+| `mercantil`     | `#FFFFFF` | `#1526FF` |
 | `neon`          | `#01C4E0` | `#161C3E` |
+| `next`          | `#000000` | `#00FF5F` |
+| `ngcash`        | `#FFFFFF` | `#000000` |
+| `nomad`         | `#000000` | `#FFCE04` |
 | `nubank`        | `#FFFFFF` | `#820AD1` |
+| `original`      | `#FFFFFF` | `#00A857` |
 | `pagbank`       | `#000000` | `#42A936` |
 | `pan`           | `#414141` | `#FFFFFF` |
-| `picpay`        | `#000000` | `#FFFFFF` |
+| `paypal`        | `#222D65` | `#FFFFFF` |
+| `picpay`        | `#FFFFFF` | `#21C25E` |
+| `revolut`       | `#FFFFFF` | `#000000` |
+| `rico`          | `#FF5200` | `#010042` |
 | `safra`         | `#C3AC6C` | `#151D43` |
 | `santander`     | `#FFFFFF` | `#EC0000` |
 | `sicoob`        | `#B8D335` | `#003B43` |
+| `sicredi`       | `#3DAE2B` | `#FFFFFF` |
+| `stone`         | `#00A868` | `#FFFFFF` |
+| `stripe`        | `#FFFFFF` | `#635BFF` |
+| `ton`           | `#FFFFFF` | `#0DEA4A` |
+| `wise`          | `#163300` | `#9FE870` |
 | `xp`            | `#000000` | `#FFFFFF` |
 
 ## Formatos
