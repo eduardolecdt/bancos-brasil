@@ -54,7 +54,7 @@
   ],
   "scripts": {
     "build:angular": "ngc -p tsconfig.angular.json",
-    "prepack": "npm run build:angular"
+    "prepare": "npm run build:angular"
   },
   "engines": {
     "node": ">=16.0.0"
