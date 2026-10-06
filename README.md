@@ -115,6 +115,26 @@ watchEffect(async () => {
 </template>
 ```
 
+### Angular 21+
+
+Componente standalone pronto, com signal inputs e `OnPush`:
+
+```typescript
+import { Component } from '@angular/core'
+import { SvgBanco } from '@edusites/bancos-brasil/angular'
+
+@Component({
+  selector: 'app-root',
+  imports: [SvgBanco],
+  template: `
+    <svg-banco nome="nubank" />
+    <svg-banco nome="cora" formato="circulo" />
+    <svg-banco nome="itau" cor="#FFFFFF" fundo="#EC7000" [tamanho]="96" />
+  `
+})
+export class App {}
+```
+
 ### Svelte
 
 Crie o componente `SvgBanco.svelte`:

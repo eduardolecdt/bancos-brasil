@@ -24,24 +24,60 @@
     "bank",
     "nuxt",
     "vue",
+    "angular",
     "gateways",
     "pagamentos"
   ],
   "main": "./src/index.js",
   "type": "module",
   "exports": {
-    ".": "./src/index.js"
+    ".": "./src/index.js",
+    "./core": {
+      "types": "./src/core.d.ts",
+      "default": "./src/core.js"
+    },
+    "./angular": {
+      "types": "./dist/angular/svg-banco.d.ts",
+      "default": "./dist/angular/svg-banco.js"
+    }
   },
   "files": [
     "src/index.js",
     "src/core.js",
     "src/icones.js",
     "src/SvgBanco.js",
+    "src/core.d.ts",
+    "dist/angular",
     "icons",
     "README.md",
     "LICENSE"
   ],
+  "scripts": {
+    "build:angular": "ngc -p tsconfig.angular.json",
+    "prepare": "npm run build:angular"
+  },
   "engines": {
     "node": ">=16.0.0"
+  },
+  "peerDependencies": {
+    "@angular/core": ">=21.0.0",
+    "@angular/platform-browser": ">=21.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@angular/core": {
+      "optional": true
+    },
+    "@angular/platform-browser": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@angular/common": "~21.2.0",
+    "@angular/compiler": "~21.2.0",
+    "@angular/compiler-cli": "~21.2.0",
+    "@angular/core": "~21.2.0",
+    "@angular/platform-browser": "~21.2.0",
+    "rxjs": "^7.8.2",
+    "typescript": "~5.9.0"
   }
 }
