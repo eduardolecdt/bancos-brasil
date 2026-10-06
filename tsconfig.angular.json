@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM"],
+    "rootDir": "src/angular",
+    "outDir": "dist/angular",
+    "declaration": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "useDefineForClassFields": false
+  },
+  "files": ["src/angular/svg-banco.ts"],
+  "angularCompilerOptions": {
+    "compilationMode": "partial",
+    "strictTemplates": true,
+    "strictInjectionParameters": true
+  }
+}
