@@ -21,17 +21,89 @@ pnpm add @edusites/bancos-brasil
 
 ## Uso
 
-### JavaScript Puro
+O navegador baixa **só os bancos que aparecem na tela**: cada banco é um arquivo próprio, carregado sob demanda. No servidor (Node, SSR) tudo resolve na hora.
+
+### Nuxt (recomendado: o módulo)
+
+Uma linha no `nuxt.config` registra `<SvgBanco>` no app inteiro **e** faz o build levar só os bancos que o site usa:
+
+```js
+// nuxt.config.ts
+export default defineNuxtConfig({
+  modules: ['@edusites/bancos-brasil/nuxt-module']
+})
+```
+
+O módulo acha os bancos procurando os nomes entre aspas no código (`nome="nubank"`, `{ banco: 'itau' }`). Nome montado em tempo de execução não aparece no código: liste em `incluir`.
+
+```js
+export default defineNuxtConfig({
+  modules: ['@edusites/bancos-brasil/nuxt-module'],
+  edusitesBancos: { incluir: ['cora', 'picpay'] }
+})
+```
+
+```vue
+<template>
+  <SvgBanco nome="nubank" />
+  <SvgBanco nome="cora" formato="circulo" />
+  <SvgBanco nome="itau" cor="#FFFFFF" fundo="#EC7000" :tamanho="96" />
+</template>
+```
+
+Com SSR o SVG sai no HTML do servidor e o navegador reaproveita o que já está na tela (não baixa de novo nem pisca).
+
+<details>
+<summary>Sem o módulo (só o componente, via plugin)</summary>
+
+`plugins/bancos.js`:
+
+```js
+import { instalarBancos } from '@edusites/bancos-brasil/nuxt'
+
+export default defineNuxtPlugin((nuxtApp) => {
+  instalarBancos(nuxtApp)
+})
+```
+
+Funciona igual na tela, mas o build gera um arquivo por banco da lib (o visitante só baixa os usados; os demais o Nuxt deixa como `prefetch`).
+</details>
+
+### Vite (Vue, React, Svelte...)
+
+Para o build levar só os bancos usados, adicione o plugin:
+
+```js
+// vite.config.js
+import { edusitesBancosVite } from '@edusites/bancos-brasil/vite'
+
+export default {
+  plugins: [edusitesBancosVite({ incluir: ['cora'] })]
+}
+```
+
+### Vue 3
+
+```js
+import { SvgBanco } from '@edusites/bancos-brasil'
+```
+
+```vue
+<SvgBanco nome="nubank" />
+<SvgBanco nome="cora" formato="circulo" />
+```
+
+### JavaScript puro
 
 ```javascript
-import { svgBanco } from '@edusites/bancos-brasil'
+import { svgBanco } from '@edusites/bancos-brasil/core'
 
 // Com preset (configuração padrão)
 const svg = await svgBanco({ nome: 'nubank' })
 document.getElementById('app').innerHTML = svg
 
 // Customizado
-const svg = await svgBanco({
+const outro = await svgBanco({
   nome: 'cora',
   formato: 'circulo',
   cor: '#FFFFFF',
@@ -40,23 +112,28 @@ const svg = await svgBanco({
 })
 ```
 
+`svgBanco` devolve a string na hora quando o banco já está em memória (sempre no servidor) e, no navegador, uma Promise enquanto baixa o arquivo daquele banco. Com `await` funciona nos dois casos. Também existem `svgBancoAsync` (sempre Promise) e `svgBancoSync` (string ou `null`, nunca Promise).
+
+`@edusites/bancos-brasil/core` não depende de Vue; a entrada principal também exporta o componente Vue.
+
 ### React
 
 ```jsx
-import { svgBanco } from '@edusites/bancos-brasil'
+import { svgBancoAsync } from '@edusites/bancos-brasil/core'
 import { useEffect, useState } from 'react'
 
 function BancoIcon({ nome, formato, cor, fundo, tamanho }) {
   const [svg, setSvg] = useState('')
 
   useEffect(() => {
-    svgBanco({ nome, formato, cor, fundo, tamanho }).then(setSvg)
+    let ativo = true
+    svgBancoAsync({ nome, formato, cor, fundo, tamanho }).then((s) => ativo && setSvg(s || ''))
+    return () => (ativo = false)
   }, [nome, formato, cor, fundo, tamanho])
 
   return <div dangerouslySetInnerHTML={{ __html: svg }} />
 }
 
-// Uso
 export default function App() {
   return (
     <div>
@@ -68,81 +145,24 @@ export default function App() {
 }
 ```
 
-### Vue 3 / Nuxt 3
-
-Crie o componente `SvgBanco.vue`:
-
-```vue
-<script setup>
-import { svgBanco } from '@edusites/bancos-brasil'
-import { ref, watchEffect } from 'vue'
-
-const props = defineProps({
-  nome: { type: String, required: true },
-  formato: String,
-  cor: String,
-  fundo: String,
-  tamanho: Number
-})
-
-const svg = ref('')
-
-watchEffect(async () => {
-  svg.value = await svgBanco({
-    nome: props.nome,
-    formato: props.formato,
-    cor: props.cor,
-    fundo: props.fundo,
-    tamanho: props.tamanho
-  })
-})
-</script>
-
-<template>
-  <div v-html="svg"></div>
-</template>
-```
-
-**Uso no template:**
-
-```vue
-<template>
-  <div>
-    <SvgBanco nome="nubank" />
-    <SvgBanco nome="cora" formato="circulo" />
-    <SvgBanco nome="itau" cor="#FFFFFF" fundo="#EC7000" :tamanho="96" />
-  </div>
-</template>
-```
-
 ### Svelte
-
-Crie o componente `SvgBanco.svelte`:
 
 ```svelte
 <script>
-  import { svgBanco } from "@edusites/bancos-brasil";
+  import { svgBancoAsync } from '@edusites/bancos-brasil/core'
 
-  export let nome;
-  export let formato = undefined;
-  export let cor = undefined;
-  export let fundo = undefined;
-  export let tamanho = undefined;
+  export let nome
+  export let formato = undefined
+  export let cor = undefined
+  export let fundo = undefined
+  export let tamanho = undefined
 
-  let svg = "";
+  let svg = ''
 
-  $: svgBanco({ nome, formato, cor, fundo, tamanho }).then((s) => (svg = s));
+  $: svgBancoAsync({ nome, formato, cor, fundo, tamanho }).then((s) => (svg = s || ''))
 </script>
 
 {@html svg}
-```
-
-**Uso:**
-
-```svelte
-<SvgBanco nome="nubank" />
-<SvgBanco nome="cora" formato="circulo" />
-<SvgBanco nome="itau" cor="#FFFFFF" fundo="#EC7000" tamanho={96} />
 ```
 
 ## Parâmetros

@@ -1,4 +1,4 @@
-import { ICONES } from './icones.js'
+import { resolverBruto, resolverBrutoSync, bancoAusente } from './resolvedor.js'
 
 const PRESETS = {
   nubank: {
@@ -250,11 +250,7 @@ const PRESETS = {
 }
 
 function normalizarNome(nome) {
-  return String(nome).toLowerCase().trim()
-}
-
-function obterIcone(nome) {
-  return ICONES[nome] || null
+  return String(nome || '').toLowerCase().trim()
 }
 
 function criarFundo(formato, tamanho, corFundo) {
@@ -284,10 +280,9 @@ function removerFills(conteudo) {
   return conteudo.replace(/\s*fill="[^"]*"/g, '')
 }
 
-export function svgBanco(options) {
-  const { nome, cor, fundo, formato, tamanho, className } = options
-
-  const nomeNormalizado = normalizarNome(nome)
+// Monta o SVG final (fundo + desenho do banco escalado) a partir do SVG bruto.
+function montar(svgOriginal, nomeNormalizado, options) {
+  const { cor, fundo, formato, tamanho, className } = options
 
   const preset = PRESETS[nomeNormalizado] || {
     cor: '#FFFFFF',
@@ -303,9 +298,6 @@ export function svgBanco(options) {
     tamanho: tamanho || preset.tamanho
   }
 
-  const svgOriginal = obterIcone(nomeNormalizado)
-  if (!svgOriginal) return null
-
   const viewBoxOriginal = extrairViewBox(svgOriginal)
   const conteudoOriginal = extrairConteudo(svgOriginal)
   const conteudoLimpo = removerFills(conteudoOriginal)
@@ -320,6 +312,41 @@ export function svgBanco(options) {
   const classAttr = className ? ` class="${className}"` : ''
 
   return `<svg width="${config.tamanho}" height="${config.tamanho}" viewBox="0 0 ${config.tamanho} ${config.tamanho}" fill="none" xmlns="http://www.w3.org/2000/svg"${classAttr}>${elementoFundo}<g transform="translate(${padding}, ${padding}) scale(${escala})" fill="${config.cor}">${conteudoLimpo}</g></svg>`
+}
+
+// A de sempre. Com o banco já em memória (sempre no servidor/Node; no navegador quando veio do SSR ou
+// já foi carregado) devolve a string NA HORA. Senão devolve uma Promise da string, enquanto baixa só o
+// arquivo daquele banco — por isso `await svgBanco(...)`, como no README, funciona em qualquer ambiente.
+// Nome inexistente: null (no navegador, até a lib confirmar a ausência, uma Promise de null).
+export function svgBanco(options) {
+  const nomeNormalizado = normalizarNome(options && options.nome)
+  if (!nomeNormalizado) return null
+  const svgOriginal = resolverBrutoSync(nomeNormalizado)
+  if (svgOriginal) return montar(svgOriginal, nomeNormalizado, options)
+  if (bancoAusente(nomeNormalizado)) return null
+  return svgBancoAsync(options)
+}
+
+// Só a versão "na hora": a string se o banco já está em memória, senão null (nunca Promise).
+// É o que o componente usa para renderizar sem piscar quando o SVG já veio do SSR.
+export function svgBancoSync(options) {
+  const nomeNormalizado = normalizarNome(options && options.nome)
+  const svgOriginal = nomeNormalizado ? resolverBrutoSync(nomeNormalizado) : null
+  return svgOriginal ? montar(svgOriginal, nomeNormalizado, options) : null
+}
+
+// Versão ASSÍNCRONA: carrega só o arquivo do banco pedido e monta o SVG final.
+export async function svgBancoAsync(options) {
+  const nomeNormalizado = normalizarNome(options && options.nome)
+  const svgOriginal = await resolverBruto(nomeNormalizado)
+  if (!svgOriginal) return null
+  return montar(svgOriginal, nomeNormalizado, options)
+}
+
+// viewBox original do banco, se ele já estiver em cache (o componente grava no HTML para a hidratação).
+export function viewBoxDoBanco(nome) {
+  const bruto = resolverBrutoSync(normalizarNome(nome))
+  return bruto ? extrairViewBox(bruto) : null
 }
 
 export function listarBancos() {
